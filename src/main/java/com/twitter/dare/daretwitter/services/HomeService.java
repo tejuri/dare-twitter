@@ -17,7 +17,7 @@ public class HomeService {
 
 	public void streamVideo() throws IOException {
 		AmazonS3 s3Client = new AmazonS3Client(
-				new BasicAWSCredentials("AKIAIRLAUAYEO4ILJIMQ", "zjIYgjSWjkscvKEEmX0mzw3L6q2669ae4FSXy5Sa"));
+				new BasicAWSCredentials("", ""));
 		S3Object s3Object = s3Client.getObject(new GetObjectRequest(bucketName, key));
 		BufferedReader reader = new BufferedReader(new InputStreamReader(s3Object.getObjectContent()));
 
