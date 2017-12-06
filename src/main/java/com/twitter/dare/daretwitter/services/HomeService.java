@@ -25,7 +25,7 @@ public class HomeService {
 			System.out.println("Generating pre-signed URL.");
 			java.util.Date expiration = new java.util.Date();
 			long milliSeconds = expiration.getTime();
-			milliSeconds += 1000 * 10; // Add 10 sec.
+			milliSeconds += 1000 * 60; // Add 60 sec.
 			expiration.setTime(milliSeconds);
 
 			GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(bucketName,
