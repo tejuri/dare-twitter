@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: "local"
+  data:
+    rest:
+      basePath: "/"
+server:
+  port: 8080
+  
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 1500000
+  route:
+    authentication:
+      path: auth
+      refresh: refresh

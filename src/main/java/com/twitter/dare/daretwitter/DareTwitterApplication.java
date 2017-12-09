@@ -1,5 +1,8 @@
 package com.twitter.dare.daretwitter;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -15,5 +18,10 @@ public class DareTwitterApplication extends SpringBootServletInitializer {
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(DareTwitterApplication.class);
+	}
+
+	@Override
+	public void onStartup(ServletContext servletContext) throws ServletException {
+		servletContext.getSessionCookieConfig().setName("yourCookieName");
 	}
 }
