@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.twitter.dare.daretwitter.models.UrlResponseVO;
 import com.twitter.dare.daretwitter.services.HomeService;
-import com.twitter.dare.twitter.models.UrlResponseVO;
 
 @RestController
 @CrossOrigin(value = "*")

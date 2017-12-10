@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property name="LOGPATH" value="${OPENSHIFT_LOG_DIR:-/logs/dare-twitter}" />
+	<property name="ENV" value="${PLATFORM:-dev}" />
+	Send debug messages to System.out
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		By default, encoders are assigned the type
+		ch.qos.logback.classic.encoder.PatternLayoutEncoder
+		<encoder>
+			<charset>utf8</charset>
+			<pattern>[%d{dd-MM-yyyy HH:mm:ss.SSS, CST}] [%thread] %M %L %-5level
+				%logger{32} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOGPATH}/DARE-TWITTER_${ENV}.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<charset>utf8</charset>
+			<Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS, CST} [%thread] %-5level
+				%logger{36} - %msg%n</Pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<FileNamePattern>${LOGPATH}/DARE-TWITTER_${ENV}.%i.log.zip
+			</FileNamePattern>
+			<MinIndex>1</MinIndex>
+			<MaxIndex>10</MaxIndex>
+		</rollingPolicy>
+
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>10MB</MaxFileSize>
+		</triggeringPolicy>
+	</appender>
+
+	<logger name="com.twitter.dare.daretwitter" level="INFO"
+		additivity="false">
+		<appender-ref ref="FILE" />
+	</logger>
+
+	<logger name="org.spring" level="INFO" additivity="false">
+		<appender-ref ref="FILE" />
+	</logger>
+
+	<logger name="org.springframework" level="INFO" additivity="false">
+		<appender-ref ref="FILE" />
+	</logger>
+
+	<logger name="org.hibernate" level="ERROR" additivity="false">
+		<appender-ref ref="FILE" />
+	</logger>
+
+	<logger name="org.springframework.data.mongodb.core.aggregation"
+		level="debug">
+		<appender-ref ref="FILE" />
+	</logger>
+
+	By default, the level of the root level is set to DEBUG
+	<root level="ERROR">
+		<appender-ref ref="FILE" />
+	</root>
+</configuration>

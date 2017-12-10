@@ -14,10 +14,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.querydsl.core.types.Predicate;
+import com.twitter.dare.daretwitter.models.QUser;
+import com.twitter.dare.daretwitter.models.User;
 import com.twitter.dare.daretwitter.repository.UserRepository;
 import com.twitter.dare.daretwitter.security.JwtUser;
-import com.twitter.dare.twitter.models.QUser;
-import com.twitter.dare.twitter.models.User;
 
 @Service
 public class JwtUserDetailsServiceImpl implements UserDetailsService {
