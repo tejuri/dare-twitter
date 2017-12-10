@@ -1,6 +1,7 @@
 package com.twitter.dare.daretwitter.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,6 +26,7 @@ public class LoginController {
 	private UserRepository userRepository;
 
 	@RequestMapping(value = "/rest/login", method = RequestMethod.POST)
+	@Cacheable(value = "user", key = "#userName", unless = "#result == null")
 	public ResponseEntity<User> doLogin(@RequestBody LoginRequestVO loginRequestVO) {
 		System.out.println(loginRequestVO.toString() + " " + (userRepository == null));
 		return new ResponseEntity<User>(loginService.loginWithUsernamePasswordCredential(loginRequestVO),

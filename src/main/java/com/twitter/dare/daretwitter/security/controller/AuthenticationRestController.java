@@ -42,7 +42,7 @@ public class AuthenticationRestController {
 	@RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest)
 			throws AuthenticationException {
-		
+
 		// Perform the security
 		try {
 			final Authentication authentication = authenticationManager
