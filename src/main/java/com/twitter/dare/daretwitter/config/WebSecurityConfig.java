@@ -3,6 +3,7 @@ package com.twitter.dare.daretwitter.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -53,8 +54,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 				// don't create session
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-
-				.authorizeRequests().antMatchers("/auth/**").permitAll().anyRequest().authenticated();
+				
+				.authorizeRequests()
+				.antMatchers("/**").permitAll()
+				.antMatchers("/auth/**").permitAll().anyRequest().authenticated();
 
 		// Custom JWT based security filter
 		httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);

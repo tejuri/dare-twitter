@@ -19,6 +19,8 @@ public class HomeController {
 	@RequestMapping(value = "/rest/home", method = RequestMethod.GET)
 	public ResponseEntity<UrlResponseVO> streamVideo() {
 
+		System.out.println("home");
+
 		HomeService homeService = new HomeService();
 		try {
 			return new ResponseEntity<UrlResponseVO>(new UrlResponseVO(homeService.streamVideo()), HttpStatus.OK);

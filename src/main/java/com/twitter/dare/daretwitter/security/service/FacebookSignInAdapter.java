@@ -17,6 +17,7 @@ public class FacebookSignInAdapter implements SignInAdapter {
 	public String signIn(String localUserId, Connection<?> connection, NativeWebRequest request) {
 		System.out.println(" ====== Sign In adapter");
 		System.out.println(connection.getApi());
+		System.out.println(connection.getDisplayName());
 		SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(
 				connection.getDisplayName(), null, Arrays.asList(new SimpleGrantedAuthority("FACEBOOK_USER"))));
 		return null;

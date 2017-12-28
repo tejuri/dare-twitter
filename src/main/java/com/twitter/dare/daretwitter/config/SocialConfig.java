@@ -14,6 +14,7 @@ import org.springframework.social.connect.mem.InMemoryUsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInController;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
 import org.springframework.social.security.AuthenticationNameUserIdSource;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.twitter.dare.daretwitter.repository.UserRepository;
 import com.twitter.dare.daretwitter.security.service.AccountConnectionSignUpService;
@@ -21,6 +22,7 @@ import com.twitter.dare.daretwitter.security.service.FacebookSignInAdapter;
 
 @Configuration
 @EnableSocial
+@CrossOrigin(value = "*")
 public class SocialConfig implements SocialConfigurer {
 
 	@Autowired
@@ -30,7 +32,9 @@ public class SocialConfig implements SocialConfigurer {
 	public void addConnectionFactories(ConnectionFactoryConfigurer connectionFactoryConfigurer,
 			Environment environment) {
 
-		connectionFactoryConfigurer.addConnectionFactory(new GoogleConnectionFactory("", ""));
+		connectionFactoryConfigurer.addConnectionFactory(
+				new GoogleConnectionFactory("446753341543-2m2pvj8c308kkbokl1ghtinkmgk0rsrd.apps.googleusercontent.com",
+						"dEe44w0lidW3p0ih020CoEIN"));
 
 	}
 
@@ -51,8 +55,10 @@ public class SocialConfig implements SocialConfigurer {
 
 		((InMemoryUsersConnectionRepository) usersConnectionRepository)
 				.setConnectionSignUp(new AccountConnectionSignUpService(userRepository));
-		return new ProviderSignInController(connectionFactoryLocator, usersConnectionRepository,
-				new FacebookSignInAdapter());
+		ProviderSignInController providerSignInController = new ProviderSignInController(connectionFactoryLocator,
+				usersConnectionRepository, new FacebookSignInAdapter());
+		providerSignInController.setPostSignInUrl("http://localhost:8081/rest/download");
+		return providerSignInController;
 	}
 
 }

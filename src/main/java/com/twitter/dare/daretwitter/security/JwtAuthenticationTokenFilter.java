@@ -37,6 +37,9 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 
 		final String requestHeader = request.getHeader(this.tokenHeader);
+		
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS, HEAD");
 
 		String username = null;
 		String authToken = null;
