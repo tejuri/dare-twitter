@@ -11,7 +11,7 @@ import com.mysema.query.annotations.QueryEntity;
 
 @QueryEntity
 @Document(collection = "user")
-public class User implements Serializable{
+public class User implements Serializable {
 
 	/**
 	 * 
@@ -33,15 +33,6 @@ public class User implements Serializable{
 	@Field("phone_number")
 	long phoneNumber;
 
-	@Field("city")
-	String city;
-
-	@Field("state")
-	String state;
-
-	@Field("country")
-	String country;
-
 	@Field("followers")
 	ArrayList<String> followers;
 
@@ -50,6 +41,9 @@ public class User implements Serializable{
 
 	@Field("rating")
 	int rating;
+
+	@Field("address")
+	ArrayList<AddressVO> addressVOs;
 
 	public String getId() {
 		return id;
@@ -91,28 +85,12 @@ public class User implements Serializable{
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getCity() {
-		return city;
+	public ArrayList<AddressVO> getAddressVOs() {
+		return addressVOs;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
+	public void setAddressVOs(ArrayList<AddressVO> addressVOs) {
+		this.addressVOs = addressVOs;
 	}
 
 	public ArrayList<String> getFollowers() {
@@ -141,9 +119,9 @@ public class User implements Serializable{
 
 	@Override
 	public String toString() {
-		return "UserDO [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", phoneNumber=" + phoneNumber + ", city=" + city + ", state=" + state + ", country=" + country
-				+ ", followers=" + followers + ", following=" + following + ", rating=" + rating + "]";
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", phoneNumber=" + phoneNumber + ", addressVOs=" + addressVOs + ", followers=" + followers
+				+ ", following=" + following + ", rating=" + rating + "]";
 	}
 
 }

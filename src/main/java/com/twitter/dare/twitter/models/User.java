@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.mysema.query.annotations.QueryEntity;
+import com.twitter.dare.daretwitter.models.AddressVO;
 
 @QueryEntity
 @Document(collection = "user")
@@ -27,14 +28,8 @@ public class User {
 	@Field("phone_number")
 	long phoneNumber;
 
-	@Field("city")
-	String city;
-
-	@Field("state")
-	String state;
-
-	@Field("country")
-	String country;
+	@Field("address")
+	ArrayList<AddressVO> addressVOs;
 
 	@Field("followers")
 	ArrayList<String> followers;
@@ -43,7 +38,7 @@ public class User {
 	ArrayList<String> following;
 
 	@Field("rating")
-	int rating;
+	double rating;
 
 	public String getId() {
 		return id;
@@ -85,28 +80,16 @@ public class User {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getCity() {
-		return city;
+	public ArrayList<AddressVO> getAddressVOs() {
+		return addressVOs;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setAddressVOs(ArrayList<AddressVO> addressVOs) {
+		this.addressVOs = addressVOs;
 	}
 
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
+	public void setRating(double rating) {
+		this.rating = rating;
 	}
 
 	public ArrayList<String> getFollowers() {
@@ -125,19 +108,11 @@ public class User {
 		this.following = following;
 	}
 
-	public int getRating() {
-		return rating;
-	}
-
-	public void setRating(int rating) {
-		this.rating = rating;
-	}
-
 	@Override
 	public String toString() {
-		return "UserDO [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", phoneNumber=" + phoneNumber + ", city=" + city + ", state=" + state + ", country=" + country
-				+ ", followers=" + followers + ", following=" + following + ", rating=" + rating + "]";
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", phoneNumber=" + phoneNumber + ", addressVOs=" + addressVOs + ", followers=" + followers
+				+ ", following=" + following + ", rating=" + rating + "]";
 	}
 
 }

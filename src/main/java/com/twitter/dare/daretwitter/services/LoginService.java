@@ -19,7 +19,7 @@ public class LoginService {
 
 	public User loginWithUsernamePasswordCredential(LoginRequestVO loginRequestVO) {
 		QUser qUserDO = new QUser("user");
-		Predicate predicate = qUserDO.email.eq("gauravsonar597@gmail.com");
+		Predicate predicate = qUserDO.email.eq("gauravsonkar597@gmail.com");
 		// List<User> users = (List<User>) userRepository.findAll(predicate);
 		System.out.println("hello world");
 		return userRepository.findOne(predicate);

@@ -43,8 +43,11 @@ public class AuthenticationRestController {
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest)
 			throws AuthenticationException {
 
+		System.out.println(authenticationRequest.toString());
+
 		// Perform the security
 		try {
+			System.out.println(new UsernamePasswordAuthenticationToken(authenticationRequest.getUserId(), authenticationRequest.getPassword()));
 			final Authentication authentication = authenticationManager
 					.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUserId(),
 							authenticationRequest.getPassword()));

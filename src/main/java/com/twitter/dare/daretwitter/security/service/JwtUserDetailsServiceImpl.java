@@ -29,7 +29,7 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
 		QUser qUserDO = new QUser("user");
-		Predicate predicate = qUserDO.email.eq("gauravsonar597@gmail.com");
+		Predicate predicate = qUserDO.email.eq("gauravsonkar597@gmail.com");
 		User loginUser = userRepository.findOne(predicate);
 
 		List<GrantedAuthority> loginUserGrantedAuthorities = new ArrayList<GrantedAuthority>();
